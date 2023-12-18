@@ -16,7 +16,7 @@ const newsExistsController = async (req, res, next) => {
     ]);
 
     // Lanzamos un error si la noticia no existe.
-    if (entries.length < 1) {
+    if (news.length < 1) {
       notFoundError("noticia");
     }
 

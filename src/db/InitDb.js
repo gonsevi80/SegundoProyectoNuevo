@@ -1,22 +1,20 @@
-import getPool from './getPool.js';
+import getPool from "./getPool.js";
 
 const main = async () => {
-    // Variable que almacenará una conexión con la base de datos.
-    let pool;
+  // Variable que almacenará una conexión con la base de datos.
+  let pool;
 
-    try {
-        pool = await getPool();
+  try {
+    pool = await getPool();
 
-        console.log('Borrando tablas...');
+    console.log("Borrando tablas...");
 
-        await pool.query(
-            'DROP TABLE IF EXISTS newsVotes, newsPhotos, news, users'
-        );
+    await pool.query("DROP TABLE IF EXISTS newsVotes, newsPhotos, news, users");
 
-        console.log('Creando tablas...');
+    console.log("Creando tablas...");
 
-        // Creamos la tabla de usuarios.
-        await pool.query(`
+    // Creamos la tabla de usuarios.
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
@@ -32,21 +30,21 @@ const main = async () => {
             )	
         `);
 
-        // Creamos la tabla de noticias.
-        await pool.query(`
+    // Creamos la tabla de noticias.
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS news (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 headline VARCHAR(50) NOT NULL,
                 entrance VARCHAR(300) NOT NULL,
-                description TEXT NOT NULL,
+                paragraphs TEXT NOT NULL,
                 userId CHAR(36) NOT NULL,
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
                 FOREIGN KEY (userId) REFERENCES users(id)
             )
         `);
 
-        // Creamos la tabla de fotos.
-        await pool.query(`
+    // Creamos la tabla de fotos.
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS newsPhotos (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 name VARCHAR(100) NOT NULL,
@@ -56,8 +54,8 @@ const main = async () => {
             )
         `);
 
-        // Tabla de votos.
-        await pool.query(`
+    // Tabla de votos.
+    await pool.query(`
             CREATE TABLE IF NOT EXISTS newsVotes (
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 value TINYINT UNSIGNED NOT NULL,
@@ -69,13 +67,13 @@ const main = async () => {
             )
         `);
 
-        console.log('¡Tablas creadas!');
-    } catch (err) {
-        console.error(err);
-    } finally {
-        // Cerramos el proceso.
-        process.exit();
-    }
+    console.log("¡Tablas creadas!");
+  } catch (err) {
+    console.error(err);
+  } finally {
+    // Cerramos el proceso.
+    process.exit();
+  }
 };
 
 // Ejecutamos la función anterior.

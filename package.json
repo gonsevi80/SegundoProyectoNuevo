@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "name": "dia_03",
+  "name": "el_noticion",
   "version": "1.0.0",
-  "description": "Se trata de una web donde los usuarios publican entradas sobre viajes. Cada entrada tiene título, descripción, lugar y hasta 3 fotos asignadas. Cada entrada puede ser votada con una puntuación entre 1 y 5.",
+  "paragraphs": "Se trata de una web donde los usuarios publican noticias. Cada noticia tiene titulo noticia, entradilla, cuerpo del artículo, y puede añadir hasta 3 fotos a la noticia. Cada noticia puede ser votada con una puntuación entre 1 y 5.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
     "dev": "nodemon ./app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gonzalo, Juan, Andrea, Natalia",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
