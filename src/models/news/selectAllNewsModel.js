@@ -5,19 +5,25 @@ import getPool from "../../db/getPool.js";
 const selectAllNewsModel = async (keyword = "", userId = "") => {
   const pool = await getPool();
 
-  // Obtenemos el listado de noticias.
-  const [news] = await pool.query(
-    `
-                SELECT 
-                    E.id,
-                    E.headline,
-                    E.entrance, 
-                    E.userId = ? AS owner,
-                    E.createdAt
-                FROM news E
-            `,
-    [userId, userId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`]
-  );
+  // Dejamos keyword para futura implementacion de una busqueda
+
+  let strQuery = `
+      SELECT 
+      E.id,
+      E.headline,
+      E.entrance, 
+      E.userId = ? AS owner,
+      E.createdAt
+      FROM news E
+      ORDER BY E.createdAt DESC
+      `;
+
+  // Si no hay token, solo devolvemos una news (la ultima)
+  if (userId === "") {
+    strQuery += "LIMIT 1";
+  }
+
+  const [news] = await pool.query(strQuery, [userId]);
 
   // Retornamos las noticias.
   return news;
