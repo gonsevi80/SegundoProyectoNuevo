@@ -1,6 +1,6 @@
 // Importamos las dependencias.
 import fs from "fs/promises";
-
+import path from "path";
 import sharp from "sharp";
 import { v4 as uuid } from "uuid";
 
@@ -13,7 +13,9 @@ import { UPLOADS_DIR } from "../../env.js";
 export const savePhotoService = async (img, width) => {
   try {
     // Ruta absoluta al directorio de subida de archivos.
-    const uploadsDir = path.join(process.cwd(), "..", "..", UPLOADS_DIR);
+    const uploadsDir = path.join(process.cwd(), UPLOADS_DIR);
+    console.log(process.cwd());
+    console.log(uploadsDir);
 
     // Creamos la carpeta uploads si no existe con la ayuda del método "access".
     try {
@@ -36,6 +38,8 @@ export const savePhotoService = async (img, width) => {
 
     // Ruta absoluta a la imagen.
     const imgPath = path.join(uploadsDir, imgName);
+
+    console.log(imgPath);
 
     // Guardamos la imagen en la carpeta de subida de archivos.
     await sharpImg.toFile(imgPath);
