@@ -81,5 +81,14 @@ router.put(
   canEditController,
   addNewsPhotoController
 );
+//Eliminar una noticia
+router.delete(
+  "/news/:newsId",
+  authUserController,
+  authUserOptionalController,
+  userExistsController,
+  newsExistsController,
+  canEditController
+);
 
 export default router;
