@@ -91,7 +91,7 @@ export const photoLimitReachedError = () => {
   throw {
     httpStatus: 409, // Conflict
     code: "PHOTO_LIMIT_REACHED",
-    message: "Se ha alcanzado el límite de tres fotos en la entrada",
+    message: "Se ha alcanzado el límite de tres fotos en la noticia",
   };
 };
 
@@ -99,7 +99,7 @@ export const cannotVoteOwnNewsError = () => {
   throw {
     httpStatus: 403, // Forbidden
     code: "CANNOT_VOTE_OWN_news",
-    message: "No puedes votar tu propia entrada",
+    message: "No puedes votar tu propia noticia",
   };
 };
 
@@ -107,6 +107,6 @@ export const voteAlreadyExistsError = () => {
   throw {
     httpStatus: 409, // Conflict
     code: "VOTE_ALREADY_EXISTS",
-    message: "No se puede votar más de una vez la misma entrada",
+    message: "No se puede votar más de una vez la misma noticia",
   };
 };
