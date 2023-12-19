@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 // Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
 
-// Función que realiza una consulta a la base de datos para agregar una foto a una entrada.
+// Función que realiza una consulta a la base de datos para agregar una foto a una noticia.
 const insertPhotoModel = async (photoName, newsId) => {
   const pool = await getPool();
 

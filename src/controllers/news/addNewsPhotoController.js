@@ -14,20 +14,20 @@ import addNewsPhotoSchema from "../../schemas/news/addNewsPhotoSchema.js";
 // Importamos los errores.
 import { photoLimitReachedError } from "../../services/errorService.js";
 
-// Función controladora final que agrega una foto a una entrada.
+// Función controladora final que agrega una foto a una noticia.
 const addNewsPhotoController = async (req, res, next) => {
   try {
-    // Obtenemos el id de al entrada de los path params.
+    // Obtenemos el id de al noticia de los path params.
     const { newsId } = req.params;
 
     // Validamos el body con Joi. Dado que "files" podría no existir enviamos un objeto vacío
     // si se da el caso.
     await validateSchemaUtil(addNewsPhotoSchema, req.files || {});
 
-    // Obtenemos la información de la entrada para comprobar si somos los propietarios.
+    // Obtenemos la información de la noticia para comprobar si somos los propietarios.
     const news = await selectNewsByIdModel(newsId);
 
-    // Si la entrada tiene más de tres fotos lanzamos un error.
+    // Si la noticia tiene más de tres fotos lanzamos un error.
     if (news.photos.length > 2) {
       photoLimitReachedError();
     }

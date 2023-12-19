@@ -11,7 +11,7 @@ import voteNewsSchema from "../../schemas/news/voteNewsSchema.js";
 // Importamos los errores.
 import { cannotVoteOwnNewsError } from "../../services/errorService.js";
 
-// Función controladora final que permite votar una entrada.
+// Función controladora final que permite votar una noticia.
 const voteNewsController = async (req, res, next) => {
   try {
     const { newsId } = req.params;
@@ -20,10 +20,10 @@ const voteNewsController = async (req, res, next) => {
     // Validamos el body con Joi.
     await validateSchemaUtil(voteNewsSchema, req.body);
 
-    // Obtenemos los detalles de la entrada.
+    // Obtenemos los detalles de la noticia.
     const news = await selectNewsByIdModel(newsId);
 
-    // Si somos los dueños de la entrada lanzamos un error.
+    // Si somos los dueños de la noticia lanzamos un error.
     if (news.userId === req.user.id) {
       cannotVoteOwnNewsError();
     }

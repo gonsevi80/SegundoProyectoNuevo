@@ -22,7 +22,7 @@ import {
   newsExistsController,
 } from "../middleware/index.js";
 
-// Crear una nueva entrada.
+// Crear una nueva noticia.
 router.post(
   "/news",
   authUserController,
@@ -30,10 +30,10 @@ router.post(
   newNewsController
 );
 
-// Obtener el listado de entradas.
+// Obtener el listado de noticias.
 router.get("/news", authUserOptionalController, listNewsController);
 
-// Obtener info de una entrada concreta.
+// Obtener info de una noticia concreta.
 router.get(
   "/news/:newsId",
   authUserOptionalController,

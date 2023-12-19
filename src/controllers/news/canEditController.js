@@ -2,28 +2,28 @@
 import selectNewsByIdModel from "../../models/news/selectNewsByIdModel.js";
 
 // Importamos los errores.
-import { unauthorizedUserError } from '../../services/errorService.js';
+import { unauthorizedUserError } from "../../services/errorService.js";
 
 // Función controladora intermedia que comprueba si un usuario tiene permiso para editar
-// una entrada.
+// una noticia.
 const canEditController = async (req, res, next) => {
-    try {
-        // Obtenemos el id de la entrada en la cuál tendra lugar el cambio.
-        const { newsId } = req.params;
+  try {
+    // Obtenemos el id de la noticia en la cuál tendra lugar el cambio.
+    const { newsId } = req.params;
 
-        // Obtenemos los datos de la entrada.
-        const news = await selectNewsByIdModel(newsId);
+    // Obtenemos los datos de la noticia.
+    const news = await selectNewsByIdModel(newsId);
 
-        // Si no somos los propietarios lanzamos un error.
-        if (news.userId !== req.user.id) {
-          unauthorizedUserError();
-        }
-
-        // Pasamos el control a la siguiente función controladora.
-        next();
-    } catch (err) {
-        next(err);
+    // Si no somos los propietarios lanzamos un error.
+    if (news.userId !== req.user.id) {
+      unauthorizedUserError();
     }
+
+    // Pasamos el control a la siguiente función controladora.
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default canEditController;
