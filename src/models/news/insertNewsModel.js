@@ -4,21 +4,21 @@ import { v4 as uuid } from "uuid";
 // Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
 
-// Función que realiza una consulta a la base de datos para agregar una nueva entrada.
+// Función que realiza una consulta a la base de datos para agregar una nueva noticia.
 const insertNewsModel = async (headline, entrance, paragraphs, userId) => {
   const pool = await getPool();
 
-  // Generamos el id de la entrada.
+  // Generamos el id de la noticia.
   const newsId = uuid();
 
-  // Insertamos la entrada.
+  // Insertamos la noticia.
   await pool.query(
     `INSERT INTO news(id, headline, entrance, paragraphs, userId) VALUES(?, ?, ?, ?, ?)`,
     [newsId, headline, entrance, paragraphs, userId]
   );
 
   console.log(newsId);
-  // Retornamos el id de la entrada.
+  // Retornamos el id de la noticia.
   return newsId;
 };
 

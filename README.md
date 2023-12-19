@@ -63,13 +63,13 @@ Los usuraios registrados podran gestionar su propio perfil y además añadir su 
 
 | Campo      | Tipo         | Descripción                            |
 | ---------- | ------------ | -------------------------------------- |
-| id         | VARCHAR(36)  | Identificador único de la entrada      |
-| headline   | VARCHAR(100) | Título de la entrada                   |
+| id         | VARCHAR(36)  | Identificador único de la noticia      |
+| headline   | VARCHAR(100) | Título de la noticia                   |
 | categories | VARCHAR(25)  | Temática de la noticia                 |
 | entrance   | VARCHAR(200) | descripción escueta de la noticia      |
 | paragraphs | TEXT         | Descripción de los Hechos              |
 | idUser     | VARCHAR(36)  | Identificador del usuario creador      |
-| createdAt  | DATETIME     | Fecha y hora de creación de la entrada |
+| createdAt  | DATETIME     | Fecha y hora de creación de la noticia |
 
 ### newsPhotos
 
@@ -77,7 +77,7 @@ Los usuraios registrados podran gestionar su propio perfil y además añadir su 
 | --------- | ------------ | ------------------------------------------------------ |
 | id        | VARCHAR(36)  | Identificador único de la foto                         |
 | name      | VARCHAR(100) | Nombre de la foto                                      |
-| idnews    | VARCHAR(36)  | Identificador de la entrada a la que pertenece la foto |
+| idnews    | VARCHAR(36)  | Identificador de la noticia a la que pertenece la foto |
 | createdAt | DATETIME     | Fecha y hora de creación de la foto                    |
 
 ### newsVotes
@@ -86,7 +86,7 @@ Los usuraios registrados podran gestionar su propio perfil y además añadir su 
 | --------- | ----------- | ---------------------------------- |
 | id        | VARCHAR(36) | Identificador único del voto       |
 | value     | TINYINT     | Valor del voto (del 1 al 5)        |
-| idnews    | VARCHAR(36) | Identificador de la entrada votada |
+| idnews    | VARCHAR(36) | Identificador de la noticia votada |
 | idUser    | VARCHAR(36) | Identificador del usuario que votó |
 | createdAt | DATETIME    | Fecha y hora de creación del voto  |
 
