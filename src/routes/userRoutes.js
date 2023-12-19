@@ -13,10 +13,13 @@ import {
   getOwnUserController,
   sendRecoverPassController,
   editUserPassController,
-  editUserAvatarController
+  editUserAvatarController,
 } from "../controllers/users/index.js";
 
-import { userExistsController, authUserController } from '../middleware/index.js'
+import {
+  userExistsController,
+  authUserController,
+} from "../middleware/index.js";
 
 // Crear un usuario pendiente de activar.
 router.post("/users/register", newUserController);
@@ -30,28 +33,34 @@ router.put("/users/validate/:registrationCode", validateUserController);
 // Obtener perfil público de un usuario.
 router.get("/users/:userId", userExistsController, getUserProfileController);
 
-
 // Obtener perfil privado de un usuario (ruta protegida)
 router.get(
-    '/users',
-    authUserController, // lo agregamos cuando queremos hacer una ruta privada o protegida
-    userExistsController,
-    getOwnUserController
+  "/users",
+  authUserController, // lo agregamos cuando queremos hacer una ruta privada o protegida
+  userExistsController,
+  getOwnUserController
 );
 
 // Editar el avatar de un usuario.
 router.put(
-  '/users/avatar',
+  "/users/avatar",
   authUserController,
   userExistsController,
   editUserAvatarController
 );
 
+//Eliminar un usuario
+router.delete(
+  "/users",
+  authUserController,
+  userExistsController,
+  getOwnUserController
+);
+
 // Enviar email de recuperación de contraseña.
-router.post('/users/password/recover', sendRecoverPassController);
+router.post("/users/password/recover", sendRecoverPassController);
 
 // Editar la contraseña de un usuario con un código de recuperación.
-router.put('/users/password', editUserPassController);
-
+router.put("/users/password", editUserPassController);
 
 export default router;

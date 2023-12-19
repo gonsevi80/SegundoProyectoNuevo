@@ -108,5 +108,6 @@ Los usuraios registrados podran gestionar su propio perfil y además añadir su 
 - **GET** - `/news/:newsId` - Devuelve una noticia en concreto.
 - **POST** - `/news/:newsId/photos` - Agregar una foto a una noticia.
 - **DELETE** - `/news/:newsId/photos/:photoId` - Eliminar una foto de una noticia.
-- **POST** - `/news/:newsId/votes` - Vota una noticia (1 o 0, like, dislike).
+- **POST** - `/news/:newsId/votes` - Vota una noticia (1 a 5, posible cambio a like o dislike cuando avancemos el proyecto).
 - **DELETE** - `/news/:newsId` - Eliminar una noticia
+- **PUT** -`/news/:newsId` - Editar una noticia
