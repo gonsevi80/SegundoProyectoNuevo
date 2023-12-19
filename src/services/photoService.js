@@ -1,6 +1,6 @@
 // Importamos las dependencias.
 import fs from "fs/promises";
-
+import path from "path";
 import sharp from "sharp";
 import { v4 as uuid } from "uuid";
 
