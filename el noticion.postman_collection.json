@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "de6ed216-10e7-45be-b253-b970532bb6b0",
+		"name": "el noticion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31369641",
+		"_collection_link": "https://solar-station-47904.postman.co/workspace/My-Workspace~58db0418-3677-4800-8b79-bc11abf77276/collection/31369641-de6ed216-10e7-45be-b253-b970532bb6b0?action=share&source=collection_link&creator=31369641"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"gonzalo\",\n    \"email\":\"gonsevi80@gmail.com\",\n    \"password\":\"Gonzalo80!\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "pvlBVMRg17yBMA22dr9ivYD5CCOqn1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Gonzalo\",\n    \"email\":\"gonsevi80@gmail.com\"\n    \n\n   \n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/validate/dWsMM8MoBcpMZfupEbIOlYODFNVS6p",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"validate",
+								"dWsMM8MoBcpMZfupEbIOlYODFNVS6p"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "dWsMM8MoBcpMZfupEbIOlYODFNVS6p",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"email\":\"gonsevi80@gmail.com\",\n    \"password\":\"Gonzalo80!\"\n\n\n\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cambiar contraseña recuperada",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"email\":\"gonsevi80@gmail.com\",\n\"recoverPassCode\":\"dQVbNl7VRH\",\n\"newPass\":\"Gonzalo80!\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recuperar contraseña",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"username\":\"Gonzalo\",\n\"email\":\"gonsevi80@gmail.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar usuario  privado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar usuario Id publico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/e1d0707c-0fcd-4f3b-9b6b-d05f4554f06a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"e1d0707c-0fcd-4f3b-9b6b-d05f4554f06a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJiZWI3NDhmNC0zZjZiLTQ1MGUtODRlMS00OGZlZDBhYTkxMzUiLCJpYXQiOjE3MDMwODM1NjQsImV4cCI6MTcwMzY4ODM2NH0.Ry_7rX0ItdsTlMjr5bNaHkMZ1PbdwgEM5evmj6YSQ7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/gonzalo/Escritorio/avatar.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/avatar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "noticias",
+			"item": [
+				{
+					"name": "borrar noticia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDMwMDUyMzMsImV4cCI6MTcwMzYxMDAzM30.WYgtS093PxvqUQWs2ko63ctBQFSnImpFgPWfSykvFLs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/news/d00f8c74-d619-4585-a3b5-e207ddb935f3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"d00f8c74-d619-4585-a3b5-e207ddb935f3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "borrar foto noticia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/news/476228b7-5f38-4354-9ad2-df9569eecb87/photos/511c97b8-d334-4629-8661-1f30c8433907",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"476228b7-5f38-4354-9ad2-df9569eecb87",
+								"photos",
+								"511c97b8-d334-4629-8661-1f30c8433907"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar foto a noticia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "postman-cloud:///1ee9d21c-1022-4950-b15f-b06f94e9da38"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/news/476228b7-5f38-4354-9ad2-df9569eecb87/photos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"476228b7-5f38-4354-9ad2-df9569eecb87",
+								"photos"
+							],
+							"query": [
+								{
+									"key": "photo",
+									"value": "noticia",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "votar noticia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiIwYWM2Mzk1ZS00MGEzLTQ5YmItYWI3Ny02ZmZlZWM3NWZmNWMiLCJpYXQiOjE3MDMwMDMwNzQsImV4cCI6MTcwMzYwNzg3NH0.YHe1bSu_KkHJgq955j1seeAhJ7qDFaGo5xcj_ILr0VQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\"value\":\"5\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/news/476228b7-5f38-4354-9ad2-df9569eecb87/votes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"476228b7-5f38-4354-9ad2-df9569eecb87",
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todas las  noticias",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/news/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear noticia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJiZWI3NDhmNC0zZjZiLTQ1MGUtODRlMS00OGZlZDBhYTkxMzUiLCJpYXQiOjE3MDMwODM1NjQsImV4cCI6MTcwMzY4ODM2NH0.Ry_7rX0ItdsTlMjr5bNaHkMZ1PbdwgEM5evmj6YSQ7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"headline\":\"Primer Titulo Noticia\",\n\"entrance\":\"Primera Entradilla\",\n\"paragraphs\":\"Primera Descripción\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/news",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar noticia por id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoibm9ybWFsIiwiaWQiOiJlMWQwNzA3Yy0wZmNkLTRmM2ItOWI2Yi1kMDVmNDU1NGYwNmEiLCJpYXQiOjE3MDI5ODI2OTUsImV4cCI6MTcwMzU4NzQ5NX0.yN4ttGXKfjGs5BNueCbgzApkIIdSmzli7z_iKaUJTx0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/news/476228b7-5f38-4354-9ad2-df9569eecb87",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"news",
+								"476228b7-5f38-4354-9ad2-df9569eecb87"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
