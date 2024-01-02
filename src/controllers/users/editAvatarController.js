@@ -1,6 +1,6 @@
 // Importamos los modelos.
 import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
-import updateUserAvatarModel from "../../models/updateUserAvatarModel.js";
+import updateUserAvatarModel from "../../models/users/updateUserAvatarModel.js";
 
 // Importamos los servicios.
 import { savePhotoService } from "../../services/photoService.js";

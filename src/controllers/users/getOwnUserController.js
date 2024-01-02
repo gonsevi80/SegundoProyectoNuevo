@@ -1,5 +1,5 @@
 // Importamos los modelos.
-import selectUserByIdModel from "../../models/users/selectUserByIdModel";
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
 
 const getOwnUserController = async (req, res, next) => {
   try {
