@@ -1,5 +1,5 @@
 // Importamos los modelos.
-import selectUserByIdModel from '../../models/selectUserByIdModel.js';
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
 import updateUserAvatarModel from "../../models/updateUserAvatarModel.js";
 
 // Importamos los servicios.
