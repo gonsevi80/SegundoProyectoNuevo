@@ -1,25 +1,29 @@
 //importamos los modelos
 import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
 import deleteUserModel from "../../models/users/deleteUserModel.js";
+
 //importamos el error de auth.
 import { unauthorizedUserError } from "../../services/errorService.js";
 
-// Función controladora final que elimina una noticia.
+//importamos el error de fallo al encontrar al usuario.
+import { notFoundError } from "../../services/errorService.js";
+
+// Función controladora final que elimina un usuario.
 const deleteUserController = async (req, res, next) => {
   try {
-    // Obtenemos el id de al noticia.
+    // Obtenemos el id del usuario.
     const { userId } = req.params;
-
-    // Obtenemos los detalles de la noticia y almacenamos en la variable la foto que queremos borrar.
-    const user = await selectUserByIdModel(UserId);
-    //si la noticia no existe o si no se es el usuario de la propia noticia lanza un error.
+    console.log(userId);
+    // Obtenemos los detalles del usuario y almacenamos en la variable el usuario que queremos borrar.
+    const user = await selectUserByIdModel(userId);
+    //si el usuario no existe o si no es el propio usuario lanza un error.
     if (!user) {
-      notFoundError("noticia");
+      notFoundError("usuario");
     }
-    if (req.user.id !== news.userId) {
+    if (req.user.id !== user.userId) {
       unauthorizedUserError();
 
-      //aquí gestión de error al no estar autorizado a borrar un usuario que no es el propio usuario.
+      //aquí gestión del error al no estar autorizado a borrar un usuario que no es el propio usuario.
     }
     // Borramos el usuario de la base de datos.
     await deleteUserModel(userId);
