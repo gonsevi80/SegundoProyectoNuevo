@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Importamos las funciones controladoras finales.
 import {
+  deleteNewsController,
   newNewsController,
   listNewsController,
   getNewsController,
@@ -88,7 +89,8 @@ router.delete(
   authUserOptionalController,
   userExistsController,
   newsExistsController,
-  canEditController
+  canEditController,
+  deleteNewsController
 );
 
 export default router;

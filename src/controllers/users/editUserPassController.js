@@ -1,5 +1,5 @@
 // Importamos los modelos.
-import updateUserPassModel from "../../models/updateUserPassModel.js";
+import updateUserPassModel from "../../models/users/updateUserPassModel.js";
 
 // Importamos los servicios.
 import validateSchemaUtil from "../../utils/validateSchemaUtil.js";

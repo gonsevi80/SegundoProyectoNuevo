@@ -14,6 +14,7 @@ import {
   sendRecoverPassController,
   editUserPassController,
   editUserAvatarController,
+  deleteUserController,
 } from "../controllers/users/index.js";
 
 import {
@@ -54,7 +55,16 @@ router.delete(
   "/users",
   authUserController,
   userExistsController,
-  getOwnUserController
+  getOwnUserController,
+  deleteUserController,
+  getUserProfileController
+);
+
+router.post(
+  "/users/avatar",
+  authUserController,
+  userExistsController,
+  editUserAvatarController
 );
 
 // Enviar email de recuperación de contraseña.
