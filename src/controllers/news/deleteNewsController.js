@@ -1,8 +1,8 @@
 //importamos los modelos
-import selectNewsByIdModel from "../../models/news/selectNewsByIdModel";
+import selectNewsByIdModel from "../../models/news/selectNewsByIdModel.js";
 import deleteNewsModel from "../../models/news/deletePhotoModel.js";
 //importamos el error de auth.
-import { unauthorizedUserError } from "../../services/errorService";
+import { unauthorizedUserError } from "../../services/errorService.js";
 
 // Función controladora final que elimina una noticia.
 const deleteNewsController = async (req, res, next) => {

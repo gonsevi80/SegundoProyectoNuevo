@@ -57,6 +57,13 @@ router.delete(
   getOwnUserController
 );
 
+router.post(
+  "/users/avatar",
+  authUserController,
+  userExistsController,
+  editUserAvatarController
+);
+
 // Enviar email de recuperación de contraseña.
 router.post("/users/password/recover", sendRecoverPassController);
 
