@@ -1,5 +1,5 @@
 // Importamos los modelos.
-import selectUserByIdModel from "../../users/models/selectUserByIdModel.js";
+import selectUserByIdModel from "../../models/users/selectUserByEmailModel.js";
 
 const getUserProfileController = async (req, res, next) => {
   try {
