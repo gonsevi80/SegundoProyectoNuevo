@@ -14,6 +14,8 @@ import { cannotVoteOwnNewsError } from "../../services/errorService.js";
 // Función controladora final que permite votar una noticia.
 const voteNewsController = async (req, res, next) => {
   try {
+    console.log(req.user); // Agrega esta línea para verificar la información del usuario.
+
     const { newsId } = req.params;
     const { value } = req.body;
 
@@ -21,15 +23,17 @@ const voteNewsController = async (req, res, next) => {
     await validateSchemaUtil(voteNewsSchema, req.body);
 
     // Obtenemos los detalles de la noticia.
-    const news = await selectNewsByIdModel(newsId);
+    const [news] = await selectNewsByIdModel(newsId);
 
     // Si somos los dueños de la noticia lanzamos un error.
-    if (news.userId === req.user.id) {
+    if (news[0].userId === req.user.id) {
       cannotVoteOwnNewsError();
     }
+    // Mapeamos el valor a un número (1 para "positive", 0 para "negative").
+    const voteValue = value === "positive" ? 1 : 0;
 
     // Insertamos el voto y obtenemos la nueva media.
-    const votesAvg = await insertVoteModel(value, newsId, req.user.id);
+    const votesAvg = await insertVoteModel(voteValue, newsId, req.user.id);
 
     res.send({
       status: "ok",
@@ -41,5 +45,3 @@ const voteNewsController = async (req, res, next) => {
     next(err);
   }
 };
-
-export default voteNewsController;
