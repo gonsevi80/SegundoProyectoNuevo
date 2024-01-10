@@ -52,12 +52,10 @@ router.put(
 
 //Eliminar un usuario
 router.delete(
-  "/users",
+  "/users/",
   authUserController,
   userExistsController,
-  getOwnUserController,
-  deleteUserController,
-  getUserProfileController
+  deleteUserController
 );
 
 router.post(

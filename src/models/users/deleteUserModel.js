@@ -6,6 +6,7 @@ const deleteUserModel = async (userId) => {
   const pool = await getPool();
 
   // Eliminamos el usuario.
+  console.log(userId);
   await pool.query(`DELETE FROM users WHERE id = ?`, [userId]);
 };
 
