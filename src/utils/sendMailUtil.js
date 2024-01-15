@@ -19,6 +19,7 @@ const transport = nodemailer.createTransport({
 
 // Función que envía un mail a un usuario.
 const sendMailUtil = async (email, subject, body) => {
+  console.log(SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS);
   try {
     const mailOptions = {
       from: SMTP_USER,
