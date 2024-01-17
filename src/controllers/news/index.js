@@ -6,6 +6,7 @@ import addNewsPhotoController from "./addNewsPhotoController.js";
 import deleteNewsPhotoController from "./deleteNewsPhotoController.js";
 import voteNewsController from "./voteNewsController.js";
 import deleteNewsController from "./deleteNewsController.js";
+import editNewsController from "./editNewsController.js";
 export {
   newNewsController,
   listNewsController,
@@ -15,4 +16,5 @@ export {
   deleteNewsPhotoController,
   voteNewsController,
   deleteNewsController,
+  editNewsController,
 };
