@@ -1,38 +1,34 @@
 // Importamos las dependencias.
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 // Importamos los errores.
 import {
-    notAuthenticatedError,
-    invalidCredentialsError,
-} from '../services/errorService.js';
+  notAuthenticatedError,
+  invalidCredentialsError,
+} from "../services/errorService.js";
 
 import { SECRET } from "../../env.js";
 
 // Middleware que desencripta el token y crea la propiedad "req.user".
 // Si no hay token lanza un error.
 const authUserController = async (req, res, next) => {
+  try {
+    // Siempre debemos enviar el token a través de la propiedad "Authorization" de los headers.
+    // Aunque la propiedad "Authorization" se escriba con "A" mayúscula, en node la recibimos
+    // con la "a" minúscula.
+    const { authorization } = req.headers;
+
+    if (!authorization) {
+      notAuthenticatedError();
+    }
+
+    const token = authorization.split(" ")[1];
+
+    // Variable que almacenará la info del token.
+    let tokenInfo;
+
     try {
-      // Siempre debemos enviar el token a través de la propiedad "Authorization" de los headers.
-      // Aunque la propiedad "Authorization" se escriba con "A" mayúscula, en node la recibimos
-      // con la "a" minúscula.
-      const { authorization } = req.headers;
-
-      if (!authorization) {
-        notAuthenticatedError();
-      }
-
-      const token = authorization.split(" ")[1];
-
-      // Variable que almacenará la info del token.
-      let tokenInfo;
-
-      try {
-        tokenInfo = jwt.verify(token, SECRET);
-      } catch (err) {
-        console.log(err);
-        invalidCredentialsError();
-      }
+      tokenInfo = jwt.verify(token, SECRET);
 
       // Agrega este console.log para verificar la información del token decodificado.
       console.log("Token Decodificado:", tokenInfo);
@@ -44,8 +40,12 @@ const authUserController = async (req, res, next) => {
       // Pasamos el control a la siguiente función controladora.
       next();
     } catch (err) {
-        next(err);
+      console.log(err);
+      invalidCredentialsError();
     }
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default authUserController;

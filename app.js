@@ -29,13 +29,13 @@ app.use(express.json());
 
 // Middleware que "desencripta" un body en formato "form-data" creando la propiedad
 // "body" y la propiedad "files" en el objeto "request"
-//app.use(
- // fileUpload({
-   // createParentPath: true,
-   // useTempFiles: true,
-  //  tempFileDir: UPLOADS_DIR,
- // })
-//);
+app.use(
+  fileUpload({
+    createParentPath: true,
+    useTempFiles: true,
+    tempFileDir: UPLOADS_DIR,
+ })
+);
 
 // Middleware que indica a express dónde están las rutas.
 app.use(routes);

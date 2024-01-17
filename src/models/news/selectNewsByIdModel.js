@@ -30,6 +30,15 @@ const selectNewsByIdModel = async (newsId, userId = "") => {
     [userId, userId, newsId]
   );
 
+  // Verifica si hay noticias antes de intentar acceder a la primera posición.
+  if (!news || news.length === 0) {
+    // Manejo de la situación en la que no se encontraron noticias.
+    // Puedes lanzar un error, devolver un valor predeterminado, etc.
+    return {
+      status: "error",
+      message: "Noticia no encontrada",
+    };
+  }
   // Obtenemos el array de fotos de la noticia.
   const [photos] = await pool.query(
     `SELECT id, name FROM newsPhotos WHERE newsId = ?`,
@@ -46,10 +55,7 @@ const selectNewsByIdModel = async (newsId, userId = "") => {
   // La media de votos es un valor de tipo String. Podemos convertirla a Number.
   news[0].votes = Number(news[0].votes);
 
-  return {
-    ...news[0],
-    photos,
-  };
+  return news[0];
 };
 
 export default selectNewsByIdModel;

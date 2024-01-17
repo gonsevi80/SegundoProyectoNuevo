@@ -1,11 +1,9 @@
-// models/Vote.js
-
 import { Schema, model } from "mongoose";
 
 const voteSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
   new: { type: Schema.Types.ObjectId, ref: "New" },
-  voteType: { type: String, enum: ["positive", "negative"] },
+  value: { type: Number, enum: [0, 1], required: true }, // Cambiado a "value" en lugar de "voteType"
   createdAt: { type: Date, default: Date.now },
 });
 
