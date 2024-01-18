@@ -14,8 +14,10 @@ export const savePhotoService = async (img, width) => {
   try {
     // Ruta absoluta al directorio de subida de archivos.
     const uploadsDir = path.join(process.cwd(), UPLOADS_DIR);
-    console.log(process.cwd());
-    console.log(uploadsDir);
+
+    const dotIndex = img.name.lastIndexOf(".");
+    const ext = img.name.slice(dotIndex);
+    console.log(ext);
 
     // Creamos la carpeta uploads si no existe con la ayuda del método "access".
     try {
@@ -27,14 +29,17 @@ export const savePhotoService = async (img, width) => {
     }
 
     // Creamos un objeto de tipo Sharp con la imagen recibida.
+
     const sharpImg = sharp(img.data);
 
+    console.log(img);
     // Redimensionamos la imagen. El parámetro "width" representa un ancho en píxeles.
+
     sharpImg.resize(width);
 
     // Generamos un nombre único para la imagen para evitar que haya dos imágenes con el
     // mismo nombre.
-    const imgName = `${uuid()}.jpg`;
+    const imgName = `${uuid()}${ext}`;
 
     // Ruta absoluta a la imagen.
     const imgPath = path.join(uploadsDir, imgName);
