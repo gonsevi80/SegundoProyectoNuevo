@@ -1,27 +1,4 @@
-// Registro: POST /user/registry
-// Login: POST /user/login
 
-// Lista categories: GET /categories
-// Crear: POST /news (TOKEN)
-// Editar: PUT /news/:idNews (req.params) (TOKEN)
-// Eliminar: DELETE /news/:idNews (req.params) (TOKEN)
-
-// Listado news: GET /news (n. votos positivos y negativos), vote pos? vot neg? y filtos/order con req.query .
-// Ejemplos:
-// GET /news - devuelve todas las news ordenadas por fecha DESC
-// GET /news?theme=1 - devuelve todas las news, de la categoría 1, ordenadas por fecha DESC
-// GET /news?today=true - devuelve todas las news de hoy
-// GET /news?today=true&order="like"&direction="desc" - devuelve todas las news de hoy ordenadas por like DESC
-// GET /news?today=false - devuelve todas las noticias que no sean actuales
-// GET /news?theme=1&today=true
-
-// Detalle news GET /news/:idNews (TOKEN)
-
-// Votar: POST /news/:idNews/vote/ (TOKEN) - en body:
-// {"vote":"1/0"}
-// Si voto no existe hago insert, si existe elimino con delete
-// (devolver el numero actual de like)
-=======
 
 # El Notición
 

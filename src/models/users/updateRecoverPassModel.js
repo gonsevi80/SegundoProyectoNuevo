@@ -1,8 +1,8 @@
 // Importamos la función que devuelve una conexión con la base de datos.
-import getPool from "../db/getPool.js";
+import getPool from "../../db/getPool.js";
 
 // Importamos los servicios.
-import sendMailUtil from "../utils/sendMailUtil.js";
+import sendMailUtil from "../../utils/sendMailUtil.js";
 
 // Función que realiza una consulta a la base de datos para actualizar el avatar de un usuario.
 const updateRecoverPassModel = async (email, recoverPassCode) => {

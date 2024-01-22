@@ -16,6 +16,7 @@ const {
   SMTP_USER,
   SMTP_PASS,
   UPLOADS_DIR,
+  FRONTEND_URL,
 } = process.env;
 
 console.log("UPLOADS_DIR:", UPLOADS_DIR);
@@ -32,4 +33,5 @@ export {
   SMTP_USER,
   SMTP_PASS,
   UPLOADS_DIR,
+  FRONTEND_URL,
 };

@@ -37,9 +37,9 @@ const main = async () => {
                 headline VARCHAR(50) NOT NULL,
                 entrance VARCHAR(300) NOT NULL,
                 paragraphs TEXT NOT NULL,
-                userId CHAR(36) NOT NULL,
+                userId CHAR(36),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
-                FOREIGN KEY (userId) REFERENCES users(id)
+                FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
             )
         `);
 

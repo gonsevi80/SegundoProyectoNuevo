@@ -1,30 +1,24 @@
-// Importamos las dependencias.
-import express from 'express';
-import morgan from 'morgan';
-import fileUpload from 'express-fileupload';
+import express from "express";
+import morgan from "morgan";
+import fileUpload from "express-fileupload";
+import cors from "cors"; // Importa el middleware cors
 
-// Importamos las rutas. Recordad que no es necesario indicar el fichero "index.js".
-import routes from './src/routes/index.js';
+import routes from "./src/routes/index.js";
 import {
-    errorController,
-    notFoundController,
-} from './src/controllers/errors/index.js';
+  errorController,
+  notFoundController,
+} from "./src/controllers/errors/index.js";
 
-// Importamos el puerto.
-import { PORT, UPLOADS_DIR } from './env.js';
+import { PORT, UPLOADS_DIR } from "./env.js";
 
-// Creamos la app que incluirá el servidor.
 const app = express();
 
 // Middleware que muestra por consola información sobre la petición entrante.
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
 console.log("UPLOADS_DIR:", UPLOADS_DIR);
 app.use(express.static(UPLOADS_DIR));
-
-// Middleware que "desencripta" un body en formato "raw" creando la propiedad
-// "body" en el objeto "request".
 app.use(express.json());
 
 // Middleware que "desencripta" un body en formato "form-data" creando la propiedad
@@ -34,21 +28,18 @@ app.use(
     createParentPath: true,
     useTempFiles: true,
     tempFileDir: UPLOADS_DIR,
- })
+  })
 );
 
-// Middleware que indica a express dónde están las rutas.
+// Habilita CORS para todas las rutas
+app.use(cors());
+
 app.use(routes);
-
-// Middleware de ruta no encontrada.
 app.use(notFoundController);
-
-// Middleware de error.
 app.use(errorController);
 
-// Ponemos el servidor a escuchar peticiones en un puerto dado.
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
 
 // Middleware de manejo de errores general
