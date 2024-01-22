@@ -60,7 +60,7 @@ export const savePhotoService = async (img, width) => {
 export const deletePhotoService = async (imgName) => {
   try {
     // Ruta absoluta al archivo que queremos eliminar.
-    const imgPath = path.join(process.cwd(), "..", "..", UPLOADS_DIR, imgName);
+    const imgPath = path.join(process.cwd(), "..", UPLOADS_DIR, imgName);
 
     // Comprobamos si la imagen existe con la ayuda del método "access".
     try {

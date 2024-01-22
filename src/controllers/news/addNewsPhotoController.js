@@ -1,33 +1,27 @@
 // Importamos los modelos.
-
 import insertPhotoModel from "../../models/news/insertPhotoModel.js";
 import selectNewsByIdModel from "../../models/news/selectNewsByIdModel.js";
 
 // Importamos los servicios.
-
 import { savePhotoService } from "../../services/photoService.js";
 
 // Importamos desde útiles.
-
 import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 // Importamos el esquema.
-
 import addNewsPhotoSchema from "../../schemas/news/addNewsPhotoSchema.js";
 import imgSchema from "../../schemas/imgSchema.js";
 
 // Importamos los errores.
-
 import { photoLimitReachedError } from "../../services/errorService.js";
 
-// Función controladora final que agrega una o varias fotos a una noticia.
-
+// Función controladora final que agrega una o varias fotos (máximo tres)a una noticia.
 const addNewsPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id de la noticia de los path params.
     const { newsId } = req.params;
 
-    // Validamos el body con Joi. Dado que "files" podría no existir, enviamos un objeto vacío si se da el caso.
+    // Validamos el body con Joi.
     await validateSchemaUtil(addNewsPhotoSchema, req.files || {});
 
     // Obtenemos la información de la noticia para comprobar si somos los propietarios.
@@ -47,7 +41,7 @@ const addNewsPhotoController = async (req, res, next) => {
     if (req.files?.photo && req.files.photo.length) {
       // Iterar sobre todas las fotos.
       for (const file of req.files.photo) {
-        // Validamos el body con Joi. Dado que "files" podría no existir, enviamos un objeto vacío si se da el caso.
+        // Validamos el body con Joi.
         await validateSchemaUtil(imgSchema, file || {});
 
         // Guardamos la foto en la carpeta de subida de archivos, redimensionamos a un ancho de 500px y obtenemos su nombre.
