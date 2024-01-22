@@ -14,32 +14,71 @@ import { cannotVoteOwnNewsError } from "../../services/errorService.js";
 // Función controladora final que permite votar una noticia.
 const voteNewsController = async (req, res, next) => {
   try {
-    const { newsId } = req.params;
-    const { value } = req.body;
+    console.log("Usuario:", req.user); // Imprime información del usuario.
+
+    const { newsId } = req.params; // Obtiene el ID de la noticia de los parámetros de la solicitud.
 
     // Validamos el body con Joi.
-    await validateSchemaUtil(voteNewsSchema, req.body);
+    await validateSchemaUtil(voteNewsSchema, req.body); // Valida el cuerpo de la solicitud según el esquema de votación.
+
+    console.log("Solicitud de Voto:", req.body); // Agrega esta línea para imprimir la solicitud completa.
+
+    // Agrega este bloque para asignar un valor numérico a voteValue según el valor en el cuerpo de la solicitud.
+    const voteValue =
+      req.body.value === "up" ? 1 : req.body.value === "down" ? 0 : null;
 
     // Obtenemos los detalles de la noticia.
-    const news = await selectNewsByIdModel(newsId);
+    const newsResult = await selectNewsByIdModel(newsId);
 
-    // Si somos los dueños de la noticia lanzamos un error.
-    if (news.userId === req.user.id) {
-      cannotVoteOwnNewsError();
+    console.log("noticia:", newsResult);
+
+    if (!newsResult) {
+      // Manejar el caso en el que no se encuentra la noticia
+      console.error("Noticia no encontrada:", newsId);
+      return res
+        .status(404)
+        .json({ status: "error", message: "Noticia no encontrada" });
     }
 
-    // Insertamos el voto y obtenemos la nueva media.
-    const votesAvg = await insertVoteModel(value, newsId, req.user.id);
+    const news = newsResult;
 
-    res.send({
+    console.log("Noticia:", news); // Imprime información sobre la noticia.
+
+    if (news.userId === req.user.id) {
+      // Verifica si el usuario intenta votar su propia noticia.
+      console.error("No puedes votar tu propia noticia:", newsId);
+      cannotVoteOwnNewsError(); // Lanza un error personalizado si el usuario intenta votar su propia noticia.
+    }
+
+    // Insertamos el voto y obtenemos el resultado directamente.
+    const voteResult = await insertVoteModel(voteValue, newsId, req.user.id);
+
+    console.log("Resultado del voto:", voteResult);
+
+    // Obtener la cantidad de votos positivos y negativos
+    const positivos = voteResult.filter((voto) => voto === 1).length;
+    const negativos = voteResult.filter((voto) => voto === 0).length;
+
+    // Envía una respuesta exitosa al cliente.
+    res.json({
       status: "ok",
       data: {
-        votesAvg,
+        positivos,
+        negativos,
       },
     });
   } catch (err) {
-    next(err);
+    if (err.message === "La noticia ya ha sido votada por este usuario.") {
+      return res.status(400).json({
+        status: "error",
+        message: "La noticia ya ha sido votada por este usuario.",
+      });
+    } else {
+      console.error("Error en el controlador de votos:", err);
+      return res
+        .status(500)
+        .json({ status: "error", message: "Error al procesar el voto." });
+    }
   }
 };
-
-export default voteNewsController;
+export default voteNewsController; // Exporta la función controladora para su uso en otras partes de la aplicación.

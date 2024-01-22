@@ -70,7 +70,7 @@ router.post(
   authUserController,
   userExistsController,
   newsExistsController,
-  voteNewsController
+  voteNewsController 
 );
 
 // Editar una noticia
