@@ -50,48 +50,35 @@ const voteNewsController = async (req, res, next) => {
       cannotVoteOwnNewsError(); // Lanza un error personalizado si el usuario intenta votar su propia noticia.
     }
 
-    // Si somos los dueños de la noticia lanzamos un error.
-    if (news.length === 0) {
-      // Verifica si la noticia existe.
-      console.error("Noticia no encontrada:", newsId);
-      return res
-        .status(404)
-        .json({ status: "error", message: "Noticia no encontrada" });
-    }
+    // Insertamos el voto y obtenemos el resultado directamente.
+    const voteResult = await insertVoteModel(voteValue, newsId, req.user.id);
 
-    console.log("Noticia:", news); // Imprime información sobre la noticia.
+    console.log("Resultado del voto:", voteResult);
 
-    if (news.userId === req.user.id) {
-      // Verifica si el usuario intenta votar su propia noticia.
-      console.error("No puedes votar tu propia noticia:", newsId);
-      cannotVoteOwnNewsError(); // Lanza un error personalizado si el usuario intenta votar su propia noticia.
-    }
-
-    // Insertamos el voto y obtenemos la nueva media.
-    const votesAvg = await insertVoteModel(voteValue, newsId, req.user.id); // Inserta el voto en la base de datos.
-
-    console.log("VotesAvg:", votesAvg); // Imprime información sobre la nueva media de votos.
-
-    // if (voteResult && typeof voteResult[Symbol.iterator] === "function") {
-    //   const votesAvg = [...voteResult]; // Convertimos a un array para iterar.
-    //   console.log("VotesAvg:", votesAvg); // Imprime información sobre la nueva media de votos.
-    // } else {
-    //   console.error("Error al obtener la nueva media de votos:", voteResult);
-    // }
+    // Obtener la cantidad de votos positivos y negativos
+    const positivos = voteResult.filter((voto) => voto === 1).length;
+    const negativos = voteResult.filter((voto) => voto === 0).length;
 
     // Envía una respuesta exitosa al cliente.
-    res.send({
+    res.json({
       status: "ok",
       data: {
-        votesAvg, // Enviamos el resultado directamente.
+        positivos,
+        negativos,
       },
     });
   } catch (err) {
-    console.error("Error en el controlador de votos:", err); // Imprime información de errores.
-    res
-      .status(500)
-      .json({ status: "error", message: "Error al procesar el voto." }); // Envía una respuesta de error al cliente.
+    if (err.message === "La noticia ya ha sido votada por este usuario.") {
+      return res.status(400).json({
+        status: "error",
+        message: "La noticia ya ha sido votada por este usuario.",
+      });
+    } else {
+      console.error("Error en el controlador de votos:", err);
+      return res
+        .status(500)
+        .json({ status: "error", message: "Error al procesar el voto." });
+    }
   }
 };
-
 export default voteNewsController; // Exporta la función controladora para su uso en otras partes de la aplicación.

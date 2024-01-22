@@ -103,10 +103,10 @@ export const cannotVoteOwnNewsError = () => {
   };
 };
 
-export const voteAlreadyExistsError = () => {
-  throw {
-    httpStatus: 409, // Conflict
-    code: "VOTE_ALREADY_EXISTS",
-    message: "No se puede votar más de una vez la misma noticia",
-  };
-};
+// export const voteAlreadyExistsError = () => {
+//   throw {
+//     httpStatus: 409, // Conflict
+//     code: "VOTE_ALREADY_EXISTS",
+//     message: "No se puede votar más de una vez la misma noticia",
+//   };
+// };
