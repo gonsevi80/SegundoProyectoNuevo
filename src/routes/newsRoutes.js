@@ -14,6 +14,7 @@ import {
   addNewsPhotoController,
   deleteNewsPhotoController,
   voteNewsController,
+  editNewsController,
 } from "../controllers/news/index.js";
 
 import {
@@ -80,7 +81,8 @@ router.put(
   userExistsController,
   newsExistsController,
   canEditController,
-  addNewsPhotoController
+  //addNewsPhotoController,
+  editNewsController
 );
 //Eliminar una noticia
 router.delete(
