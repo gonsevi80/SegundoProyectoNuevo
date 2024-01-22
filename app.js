@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
-import cors from "cors"; // Importa el middleware cors
+import cors from "cors";
 
 import routes from "./src/routes/index.js";
 import {
