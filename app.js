@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(
   fileUpload({
     createParentPath: true,
-    useTempFiles: true,
+    useTempFiles: false,
     tempFileDir: UPLOADS_DIR,
   })
 );

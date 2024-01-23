@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-console.log("ENVIRONMENT VARIABLES:", process.env);
+//console.log("ENVIRONMENT VARIABLES:", process.env);
 
 const {
   MYSQL_HOST,
@@ -19,7 +19,7 @@ const {
   FRONTEND_URL,
 } = process.env;
 
-console.log("UPLOADS_DIR:", UPLOADS_DIR);
+//console.log("UPLOADS_DIR:", UPLOADS_DIR);
 
 export {
   MYSQL_HOST,
