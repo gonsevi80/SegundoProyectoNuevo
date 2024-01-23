@@ -38,35 +38,41 @@ const addNewsPhotoController = async (req, res, next) => {
     // Declarar el array para almacenar información sobre todas las fotos.
     let photosData = [];
 
+    if (req.files?.photo?.name) {
+      req.files.photo = [req.files.photo];
+      //console.log("hola");
+    }
+    console.log(req.files.photo);
     if (req.files?.photo && req.files.photo.length) {
+      // Verificar que no se exceda el límite total de fotos acumuladas.
+
+      if (totalPhotos + req.files.photo.length > 3) {
+        // Si se excede el límite total, lanzamos un error o manejamos la situación según tus necesidades.
+        // En este ejemplo, lanzamos un error indicando que se excedió el límite.
+
+        throw new Error("Se ha excedido el límite total de fotos permitidas.");
+      }
       // Iterar sobre todas las fotos.
       for (const file of req.files.photo) {
+        //console.log("test", file);
         // Validamos el body con Joi.
         await validateSchemaUtil(imgSchema, file || {});
 
         // Guardamos la foto en la carpeta de subida de archivos, redimensionamos a un ancho de 500px y obtenemos su nombre.
         const photoName = await savePhotoService(file, 500);
 
-        // Verificar que no se exceda el límite total de fotos acumuladas.
-        if (totalPhotos < 2) {
-          // Guardamos la foto en la base de datos y obtenemos el id de la misma.
-          const photoId = await insertPhotoModel(photoName, newsId);
+        console.log(totalPhotos);
+        // Guardamos la foto en la base de datos y obtenemos el id de la misma.
+        const photoId = await insertPhotoModel(photoName, newsId);
 
-          // Incrementamos la cantidad total de fotos acumuladas.
-          totalPhotos++;
+        // Incrementamos la cantidad total de fotos acumuladas.
+        totalPhotos++;
 
-          // Agregamos información de la foto al array.
-          photosData.push({
-            id: photoId,
-            name: photoName,
-          });
-        } else {
-          // Si se excede el límite total, lanzamos un error o manejamos la situación según tus necesidades.
-          // En este ejemplo, lanzamos un error indicando que se excedió el límite.
-          throw new Error(
-            "Se ha excedido el límite total de fotos permitidas."
-          );
-        }
+        // Agregamos información de la foto al array.
+        photosData.push({
+          id: photoId,
+          name: photoName,
+        });
       }
     }
 
