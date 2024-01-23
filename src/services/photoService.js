@@ -17,7 +17,7 @@ export const savePhotoService = async (img, width) => {
 
     // Ruta absoluta al directorio de subida de archivos.
 
-    const uploadsDir = path.join(process.cwd(), "..", "..", UPLOADS_DIR);
+    const uploadsDir = path.join(process.cwd(), UPLOADS_DIR);
 
     const dotIndex = img.name.lastIndexOf(".");
 
