@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Importamos las funciones controladoras finales.
 import {
+  deleteNewsController,
   newNewsController,
   listNewsController,
   getNewsController,
@@ -13,6 +14,7 @@ import {
   addNewsPhotoController,
   deleteNewsPhotoController,
   voteNewsController,
+  editNewsController,
 } from "../controllers/news/index.js";
 
 import {
@@ -68,7 +70,7 @@ router.post(
   authUserController,
   userExistsController,
   newsExistsController,
-  voteNewsController
+  voteNewsController 
 );
 
 // Editar una noticia
@@ -79,7 +81,8 @@ router.put(
   userExistsController,
   newsExistsController,
   canEditController,
-  addNewsPhotoController
+  //addNewsPhotoController,
+  editNewsController
 );
 //Eliminar una noticia
 router.delete(
@@ -88,7 +91,8 @@ router.delete(
   authUserOptionalController,
   userExistsController,
   newsExistsController,
-  canEditController
+  canEditController,
+  deleteNewsController
 );
 
 export default router;

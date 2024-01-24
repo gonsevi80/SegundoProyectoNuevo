@@ -1,17 +1,20 @@
-import newNewsController from './newNewsController.js';
-import listNewsController from './listNewsController.js';
-import getNewsController from './getNewsController.js';
-import canEditController from './canEditController.js';
-import addNewsPhotoController from './addNewsPhotoController.js';
-import deleteNewsPhotoController from './deleteNewsPhotoController.js';
-import voteNewsController from './voteNewsController.js';
-
+import newNewsController from "./newNewsController.js";
+import listNewsController from "./listNewsController.js";
+import getNewsController from "./getNewsController.js";
+import canEditController from "./canEditController.js";
+import addNewsPhotoController from "./addNewsPhotoController.js";
+import deleteNewsPhotoController from "./deleteNewsPhotoController.js";
+import voteNewsController from "./voteNewsController.js";
+import deleteNewsController from "./deleteNewsController.js";
+import editNewsController from "./editNewsController.js";
 export {
-    newNewsController,
-    listNewsController,
-    getNewsController,
-    canEditController,
-    addNewsPhotoController,
-    deleteNewsPhotoController,
-    voteNewsController
+  newNewsController,
+  listNewsController,
+  getNewsController,
+  canEditController,
+  addNewsPhotoController,
+  deleteNewsPhotoController,
+  voteNewsController,
+  deleteNewsController,
+  editNewsController,
 };
