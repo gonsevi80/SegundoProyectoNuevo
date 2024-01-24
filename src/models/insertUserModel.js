@@ -46,7 +46,7 @@ const insertUserModel = async (username, email, password, registrationCode) => {
 
   Estamos encantados de que te hayas registrado en El Notición! Ahora, para activar tu cuenta, haz click en el siguiente enlace:
 
-  <a href="http://localhost:8000/users/validate/${registrationCode}">Activar mi cuenta</a>
+  <a href="http://localhost:3000/users/validate/${registrationCode}">Activar mi cuenta</a>
 `;
 
   // Enviamos el email de verificación al usuario.
