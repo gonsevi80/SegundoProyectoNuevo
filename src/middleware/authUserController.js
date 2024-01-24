@@ -1,51 +1,30 @@
-// Importamos las dependencias.
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
+import { invalidCredentialsError, notAuthenticatedError } from '../services/errorService.js';
 
-// Importamos los errores.
-import {
-  notAuthenticatedError,
-  invalidCredentialsError,
-} from "../services/errorService.js";
 
-import { SECRET } from "../../env.js";
-
-// Middleware que desencripta el token y crea la propiedad "req.user".
-// Si no hay token lanza un error.
-const authUserController = async (req, res, next) => {
-  try {
-    // Siempre debemos enviar el token a través de la propiedad "Authorization" de los headers.
-    // Aunque la propiedad "Authorization" se escriba con "A" mayúscula, en node la recibimos
-    // con la "a" minúscula.
-    const { authorization } = req.headers;
-
-    if (!authorization) {
-      notAuthenticatedError();
-    }
-
-    const token = authorization.split(" ")[1];
-
-    // Variable que almacenará la info del token.
-    let tokenInfo;
-
+const authUserController = (req,res,next) => {
     try {
-      tokenInfo = jwt.verify(token, SECRET);
+        const { authorization } = req.headers;
 
-      // Agrega este console.log para verificar la información del token decodificado.
-      //console.log("Token Decodificado:", tokenInfo);
+        if(!authorization){
+            notAuthenticatedError();
+        }
 
-      // Si hemos llegado hasta aquí quiere decir que el token ya se ha desencriptado.
-      // Creamos la propiedad "user" en el objeto "request" (es una propiedad inventada).
-      req.user = tokenInfo;
+        let tokenInfo;
 
-      // Pasamos el control a la siguiente función controladora.
-      next();
-    } catch (err) {
-      console.log(err);
-      invalidCredentialsError();
+        try {
+            tokenInfo = jwt.verify(authorization, process.env.SECRET);
+        } catch (error) {
+            invalidCredentialsError();
+        }
+
+        req.user = tokenInfo;
+
+        next();
+    } catch (error) {
+        next(error);
     }
-  } catch (err) {
-    next(err);
-  }
-};
+}
+
 
 export default authUserController;
