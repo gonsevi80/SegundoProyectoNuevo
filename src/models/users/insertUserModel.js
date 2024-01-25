@@ -1,7 +1,7 @@
 // Importamos las dependencias.
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
-//import { FRONTEND_URL } from "../../../env.js";
+import { FRONTEND_URL } from "../../../env.js";
 
 // Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
