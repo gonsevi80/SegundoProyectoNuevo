@@ -55,12 +55,14 @@ export const notAuthenticatedError = () => {
   };
 };
 
-export const recoveryCodeError = () => {
-  throw new Error({
+export const recoveryCodeError = (
+  message = "Código de recuperación incorrecto"
+) => {
+  return {
     httpStatus: 401, // Unauthorized
     code: "INVALID_RECOVERY_CODE",
-    message: "Código de recuperación incorrecto",
-  });
+    message: message,
+  };
 };
 
 export const saveFileError = () => {
