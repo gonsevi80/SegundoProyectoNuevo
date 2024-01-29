@@ -42,14 +42,15 @@ router.get(
   userExistsController,
   getOwnUserController
 );
-//editar usuario
 
+//editar usuario
 router.patch(
   "/users/update",
   authUserController,
   userExistsController,
   updateUser
 );
+
 // Editar el avatar de un usuario.
 router.put(
   "/users/avatar",
