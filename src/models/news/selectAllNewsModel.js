@@ -22,6 +22,8 @@ const selectAllNewsModel = async (keyword = "", userId = "") => {
       `;
 
   // Si no hay token, solo devolvemos una news (la ultima)
+
+
   /*if (userId === "") {
     strQuery += "LIMIT 1";
   }*/
