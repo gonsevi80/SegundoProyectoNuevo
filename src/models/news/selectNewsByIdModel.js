@@ -29,7 +29,7 @@ const selectNewsByIdModel = async (newsId, userId = "") => {
             `,
     [userId, userId, newsId]
   );
-
+  console.log(userId);
   // Verifica si hay noticias antes de intentar acceder a la primera posición.
   if (!news || news.length === 0) {
     // Manejo de la situación en la que no se encontraron noticias.

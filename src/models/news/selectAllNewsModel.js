@@ -12,17 +12,20 @@ const selectAllNewsModel = async (keyword = "", userId = "") => {
       E.id,
       E.headline,
       E.entrance, 
-      E.userId = ? AS owner,
+      E.userId,
+      U.username AS owner,
+      U.avatar,
       E.createdAt
       FROM news E
+      LEFT JOIN users U ON E.userId = U.id
       ORDER BY E.createdAt DESC
       `;
 
   // Si no hay token, solo devolvemos una news (la ultima)
-  if (userId === "") {
+  /*if (userId === "") {
     strQuery += "LIMIT 1";
-  }
-
+  }*/
+  console.log(userId);
   const [news] = await pool.query(strQuery, [userId]);
 
   // Retornamos las noticias.
