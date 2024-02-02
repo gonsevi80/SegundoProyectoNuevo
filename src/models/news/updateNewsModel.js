@@ -9,8 +9,9 @@ const updateNewsModel = async (newsId, updatedNews) => {
 
     // Realiza la consulta de actualización.
     const [result] = await pool.execute(
-      "UPDATE news SET headline = ?, entrance = ?, paragraphs = ? WHERE id = ?",
+      "UPDATE news SET category = ?,headline = ?, entrance = ?, paragraphs = ? WHERE id = ?",
       [
+        updatedNews.category || null,
         updatedNews.headline || null,
         updatedNews.entrance || null,
         updatedNews.paragraphs || null,

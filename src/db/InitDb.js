@@ -36,8 +36,9 @@ const main = async () => {
     await pool.query(`
             CREATE TABLE IF NOT EXISTS news (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                headline VARCHAR(50) NOT NULL,
-                entrance VARCHAR(300) NOT NULL,
+                category CHAR (36) NOT NULL,
+                headline VARCHAR(100) NOT NULL,
+                entrance VARCHAR(500) NOT NULL,
                 paragraphs TEXT NOT NULL,
                 userId CHAR(36),
                 createdAt DATETIME DEFAULT CURRENT_TIMESTAMP, 
