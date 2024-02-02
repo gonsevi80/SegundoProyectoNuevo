@@ -19,6 +19,8 @@ const main = async () => {
                 id CHAR(36) PRIMARY KEY NOT NULL,
                 email VARCHAR(100) UNIQUE NOT NULL,
                 username VARCHAR(30) UNIQUE NOT NULL,
+                biography VARCHAR(1000) DEFAULT NULL,
+                hobbies VARCHAR(100)  DEFAULT NULL,
                 password VARCHAR(100) NOT NULL,
                 avatar VARCHAR(100),
                 active BOOLEAN DEFAULT false,

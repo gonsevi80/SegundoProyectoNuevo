@@ -10,9 +10,9 @@ const validateUserController = async (req, res, next) => {
     // Activamos el usuario.
     const user = await updateUserRegCodeModel(registrationCode);
     console.log(user);
-    res.send({
+    res.status(200).json({
       status: "ok",
-      message: "Usuario activado",
+      message: "Usuario listo para el combate",
     });
   } catch (err) {
     next(err);

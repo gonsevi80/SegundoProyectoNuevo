@@ -1,5 +1,5 @@
 // Importamos la función que devuelve una conexión con la base de datos.
-import getPool from '../db/getPool.js';
+import getPool from "../db/getPool.js";
 
 // Función que realiza una consulta a la base de datos para seleccionar a un usuario con un id dado.
 // const selectUserByIdModel = async (userId) => {
@@ -17,16 +17,13 @@ import getPool from '../db/getPool.js';
 //     return users[0];
 // };
 
-
-
-
 const selectUserByIdModel = async (userId) => {
   try {
     const pool = await getPool();
 
     // Comprobamos si hay algún usuario con el id proporcionado.
     const [[user]] = await pool.query(
-      `SELECT id, username, email, avatar, createdAt FROM users WHERE id = ?`,
+      `SELECT id, username, email, avatar, biography, hobbies, createdAt FROM users WHERE id = ?`,
       [userId]
     );
 
