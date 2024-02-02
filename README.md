@@ -1,5 +1,3 @@
-
-
 # El Notición
 
 Se trata de una web donde los usuarios publican noticias. Cada noticia tiene un título o headline, entradilla (entrance),texto (paragraphs), categoría y 1 foto asignada. Cada noticia puede ser votada tanto positiva como negativamente y comentada por los usuarios registrados.
@@ -42,7 +40,7 @@ Los usuraios registrados podran gestionar su propio perfil y además añadir su 
 | ---------- | ------------ | -------------------------------------- |
 | id         | VARCHAR(36)  | Identificador único de la noticia      |
 | headline   | VARCHAR(100) | Título de la noticia                   |
-| categories | VARCHAR(25)  | Temática de la noticia                 |
+| category   | VARCHAR(25)  | Temática de la noticia                 |
 | entrance   | VARCHAR(200) | descripción escueta de la noticia      |
 | paragraphs | TEXT         | Descripción de los Hechos              |
 | idUser     | VARCHAR(36)  | Identificador del usuario creador      |
