@@ -1,15 +1,15 @@
 import getPool from "../../db/getPool.js";
 
-const updateUserModel = async (email, username, userId) => {
+const updateUserModel = async (email, username, userId, biography, hobbies) => {
   const pool = await getPool();
 
   await pool.query(
     `
         UPDATE users
-        SET email = ?, username = ?
+        SET email = ?, username = ?, biography = ?, hobbies = ?
         WHERE id = ?
         `,
-    [email, username, userId]
+    [email, username, biography, hobbies, userId]
   );
 };
 

@@ -10,6 +10,7 @@ const selectAllNewsModel = async (keyword = "", userId = "") => {
   let strQuery = `
       SELECT 
       E.id,
+      E.category,
       E.headline,
       E.entrance, 
       E.userId,
@@ -22,7 +23,8 @@ const selectAllNewsModel = async (keyword = "", userId = "") => {
       `;
 
   // Si no hay token, solo devolvemos una news (la ultima)
-  if (!userId === "") {
+
+  /*if (userId === "") {
     strQuery += "LIMIT 1";
   }*/
   console.log(userId);

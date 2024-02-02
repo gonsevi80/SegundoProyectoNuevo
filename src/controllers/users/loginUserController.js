@@ -41,7 +41,7 @@ const loginUserController = async (req, res, next) => {
 
     // Si las contraseña no coincide o no existe un usuario con el email proporcionado
     // lanzamos un error.
-    // ! = operador de negación
+
     if (!user || !validPass) {
       invalidCredentialsError();
     }
