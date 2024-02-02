@@ -9,7 +9,7 @@ const updateUserModel = async (email, username, userId, biography, hobbies) => {
         SET email = ?, username = ?, biography = ?, hobbies = ?
         WHERE id = ?
         `,
-    [email, username, userId, biography, hobbies]
+    [email, username, biography, hobbies, userId]
   );
 };
 
