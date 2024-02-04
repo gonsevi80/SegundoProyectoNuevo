@@ -73,17 +73,6 @@ router.post(
   voteNewsController
 );
 
-// Editar una noticia
-router.put(
-  "/news/:newsId/edit",
-  authUserController,
-  authUserOptionalController,
-  userExistsController,
-  newsExistsController,
-  canEditController,
-  //addNewsPhotoController,
-  editNewsController
-);
 //Eliminar una noticia
 router.delete(
   "/news/:newsId",
