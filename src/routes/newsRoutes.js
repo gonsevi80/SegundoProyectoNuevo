@@ -75,7 +75,7 @@ router.post(
 
 // Editar una noticia
 router.put(
-  "/news/:newsId",
+  "/news/:newsId/edit",
   authUserController,
   authUserOptionalController,
   userExistsController,
