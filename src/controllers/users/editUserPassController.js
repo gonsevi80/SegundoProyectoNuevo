@@ -9,16 +9,27 @@ import editUserPassSchema from "../../schemas/users/editUserPassSchema.js";
 
 const editUserPassController = async (req, res, next) => {
   try {
-    const { email, recoverPassCode, newPass } = req.body;
+    const { email, recoverPassCode, newPass, newPassRepeat } = req.body;
 
     // Validamos el body con Joi.
-    await validateSchemaUtil(editUserPassSchema, req.body);
+    await validateSchemaUtil(editUserPassSchema, {
+      email,
+      recoverPassCode,
+      newPass,
+      newPassRepeat,
+    });
 
+    // Verificar que newPass coincida con newPassRepeat
+    if (newPass !== newPassRepeat) {
+      return res.status(400).json({ error: "Las contraseñas no coinciden" });
+    }
+
+    // Llamamos al modelo para actualizar la contraseña.
     await updateUserPassModel(email, recoverPassCode, newPass);
 
-    res.send({
+    res.json({
       status: "ok",
-      message: "Contraseña actualizada",
+      message: "Contraseña actualizada exitosamente",
     });
   } catch (err) {
     next(err);

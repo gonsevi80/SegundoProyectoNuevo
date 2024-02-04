@@ -21,7 +21,7 @@ const app = express();
 app.use(morgan("dev"));
 
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
-console.log("UPLOADS_DIR:", UPLOADS_DIR);
+
 app.use(express.static(UPLOADS_DIR));
 app.use(express.json());
 

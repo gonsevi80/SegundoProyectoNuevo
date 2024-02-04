@@ -15,6 +15,7 @@ import {
   editUserPassController,
   editUserAvatarController,
   deleteUserController,
+  updateUser,
 } from "../controllers/users/index.js";
 
 import {
@@ -40,6 +41,14 @@ router.get(
   authUserController, // lo agregamos cuando queremos hacer una ruta privada o protegida
   userExistsController,
   getOwnUserController
+);
+
+//editar usuario
+router.patch(
+  "/users/update",
+  authUserController,
+  userExistsController,
+  updateUser
 );
 
 // Editar el avatar de un usuario.

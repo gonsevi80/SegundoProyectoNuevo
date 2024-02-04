@@ -1,7 +1,7 @@
 // Importamos las dependencias.
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
-//import { FRONTEND_URL } from "../../../env.js";
+import { FRONTEND_URL } from "../../../env.js";
 
 // Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
@@ -16,7 +16,14 @@ import {
 } from "../../services/errorService.js";
 
 // Función que realiza una consulta a la base de datos para crear un nuevo usuario.
-const insertUserModel = async (username, email, password, registrationCode) => {
+const insertUserModel = async (
+  username,
+  email,
+  biography,
+  hobbies,
+  password,
+  registrationCode
+) => {
   const pool = await getPool();
 
   // Buscamos en la base de datos algún usuario con ese nombre.
@@ -59,8 +66,8 @@ const insertUserModel = async (username, email, password, registrationCode) => {
 
   // Insertamos el usuario.
   await pool.query(
-    `INSERT INTO users(id, username, email, password, registrationCode) VALUES(?, ?, ?, ?, ?)`,
-    [uuid(), username, email, hashedPass, registrationCode]
+    `INSERT INTO users(id, username, email, biography, hobbies, password, registrationCode) VALUES(?, ?, ?, ?, ?, ?, ?)`,
+    [uuid(), username, email, biography, hobbies, hashedPass, registrationCode]
   );
 };
 

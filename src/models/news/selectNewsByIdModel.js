@@ -11,6 +11,7 @@ const selectNewsByIdModel = async (newsId, userId = "") => {
     `
                 SELECT 
                     E.id,
+                    E.category,
                     E.headline,
                     E.entrance, 
                     E.paragraphs,

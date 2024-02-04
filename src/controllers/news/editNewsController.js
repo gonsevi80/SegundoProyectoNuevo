@@ -13,7 +13,7 @@ const editNewsController = async (req, res, next) => {
 
     // Obtiene los datos actualizados de la noticia del cuerpo de la solicitud.
     const updatedNewsData = req.body;
-
+    console.log(updatedNewsData);
     // Obtiene la noticia existente.
     const existingNews = await selectNewsByIdModel(newsId);
 
