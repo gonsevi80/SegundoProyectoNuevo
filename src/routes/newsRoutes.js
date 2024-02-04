@@ -43,18 +43,6 @@ router.get(
   getNewsController
 );
 
-// Editar una noticia
-router.put(
-  "/news/update/:newsId",
-  authUserController,
-  authUserOptionalController,
-  userExistsController,
-  newsExistsController,
-  canEditController,
-  //addNewsPhotoController, se podría?
-  editNewsController
-);
-
 // Agregar una foto a una noticia
 router.post(
   "/news/:newsId/photos",
