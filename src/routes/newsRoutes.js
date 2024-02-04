@@ -85,6 +85,7 @@ router.post(
   voteNewsController
 );
 
+
 //Eliminar una noticia
 router.delete(
   "/news/:newsId",
