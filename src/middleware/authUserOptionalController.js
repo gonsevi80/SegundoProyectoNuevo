@@ -8,12 +8,18 @@ import { invalidCredentialsError } from "../services/errorService.js";
 // Si no hay token NO lanza un error.
 const authUserControllerOptional = async (req, res, next) => {
   try {
-    console.log("text");
     const { authorization } = req.headers;
 
     if (authorization) {
       // Variable que almacenará la info del token.
-      const token = authorization.split(" ")[1];
+
+      const tokenParts = authorization.split(" ");
+      let token;
+      if (tokenParts.length > 1) {
+        token = tokenParts[1];
+      } else {
+        token = tokenParts[0];
+      }
       let tokenInfo;
 
       try {
