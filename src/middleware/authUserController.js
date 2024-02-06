@@ -12,16 +12,24 @@ const authUserController = (req, res, next) => {
       notAuthenticatedError();
     }
 
+    const tokenParts = authorization.split(" ");
+    let token;
+    if (tokenParts.length > 1) {
+      token = tokenParts[1];
+    } else {
+      token = tokenParts[0];
+    }
+
     let tokenInfo;
 
     try {
-      tokenInfo = jwt.verify(authorization, process.env.SECRET);
+      tokenInfo = jwt.verify(token, process.env.SECRET);
     } catch (error) {
       invalidCredentialsError();
     }
 
     req.user = tokenInfo;
-
+    console.log(req.user);
     next();
   } catch (error) {
     next(error);
