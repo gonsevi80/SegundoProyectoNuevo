@@ -1,10 +1,5 @@
-// Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
 
-// Importamos los errores.
-import { notFoundError } from "../../services/errorService.js";
-
-// Función que realiza una consulta a la base de datos para activar un usuario.
 const updateUserRegCodeModel = async (registrationCode) => {
   const pool = await getPool();
 
@@ -16,14 +11,24 @@ const updateUserRegCodeModel = async (registrationCode) => {
 
   // Si no existe ningún usuario con ese código de registro lanzamos un error.
   if (users.length < 1) {
-    notFoundError("usuario");
+    throw new Error(
+      "Usuario no encontrado con código de registro: " + registrationCode
+    );
   }
 
-  // Actualizamos el usuario.
-  await pool.query(
-    `UPDATE users SET active = true, registrationCode = null WHERE registrationCode = ?`,
+  // Actualizamos el usuario a activo y eliminamos el código de registro.
+  const result = await pool.query(
+    `UPDATE users SET active = true, registrationCode = NULL WHERE registrationCode = ? AND active = false`,
     [registrationCode]
   );
+
+  if (result[0].affectedRows === 0) {
+    throw new Error(
+      "No se pudo activar el usuario o el usuario ya estaba activado."
+    );
+  }
+
+  return true;
 };
 
 export default updateUserRegCodeModel;
