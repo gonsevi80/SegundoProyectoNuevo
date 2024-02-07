@@ -1,6 +1,6 @@
 //importamos los modelos
 import selectNewsByIdModel from "../../models/news/selectNewsByIdModel.js";
-import deleteNewsModel from "../../models/news/deletePhotoModel.js";
+import deleteNewsModel from "../../models/news/deleteNewsModel.js";
 //importamos el error de auth.
 import { unauthorizedUserError } from "../../services/errorService.js";
 
