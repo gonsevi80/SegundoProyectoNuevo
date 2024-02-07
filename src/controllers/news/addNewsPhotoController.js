@@ -20,7 +20,7 @@ const addNewsPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id de la noticia de los path params.
     const { newsId } = req.params;
-
+    console.log("fileeees:", req.files);
     // Validamos el body con Joi.
     await validateSchemaUtil(addNewsPhotoSchema, req.files || {});
 
@@ -42,7 +42,7 @@ const addNewsPhotoController = async (req, res, next) => {
       req.files.photo = [req.files.photo];
       //console.log("hola");
     }
-    console.log(req.files.photo);
+    console.log("files:", req.files.photo);
     if (req.files?.photo && req.files.photo.length) {
       // Verificar que no se exceda el límite total de fotos acumuladas.
 
