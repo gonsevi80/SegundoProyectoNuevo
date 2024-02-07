@@ -1,21 +1,21 @@
-// Importamos los modelos.
 import updateUserRegCodeModel from "../../models/users/updateUserRegCodeModel.js";
-
-// Función controladora final que valida a un usuario recién registrado.
 const validateUserController = async (req, res, next) => {
   try {
-    // Obtenemos el código de registro de los path params.
     const { registrationCode } = req.params;
 
-    // Activamos el usuario.
-    const user = await updateUserRegCodeModel(registrationCode);
-    console.log(user);
-    res.status(200).json({
+    await updateUserRegCodeModel(registrationCode);
+
+    return res.status(200).json({
       status: "ok",
-      message: "Usuario listo para el combate",
+      message: "Usuario activado con éxito.",
     });
   } catch (err) {
-    next(err);
+    console.error("Error al activar el usuario:", err.message);
+    return res.status(404).json({
+      httpStatus: 404,
+      code: "RESOURCE_NOT_FOUND",
+      message: err.message || "El recurso requerido 'usuario' no existe",
+    });
   }
 };
 

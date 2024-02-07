@@ -36,7 +36,7 @@ const main = async () => {
     await pool.query(`
             CREATE TABLE IF NOT EXISTS news (
                 id CHAR(36) PRIMARY KEY NOT NULL,
-                category CHAR (36) NOT NULL,
+                category VARCHAR (36) NOT NULL,
                 headline VARCHAR(100) NOT NULL,
                 entrance VARCHAR(500) NOT NULL,
                 paragraphs TEXT NOT NULL,
