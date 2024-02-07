@@ -12,6 +12,7 @@ import {
 } from "./src/controllers/errors/index.js";
 
 import { PORT, UPLOADS_DIR } from "./env.js";
+import { log } from "console";
 
 dotenv.config();
 
@@ -22,7 +23,8 @@ app.use(morgan("dev"));
 
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
 
-app.use(express.static(UPLOADS_DIR));
+app.use("/uploads", express.static(UPLOADS_DIR));
+console.log(UPLOADS_DIR);
 app.use(express.json());
 
 // Middleware que "desencripta" un body en formato "form-data" creando la propiedad
