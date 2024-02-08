@@ -46,16 +46,16 @@ const main = async () => {
             )
         `);
 
-    // Creamos la tabla de fotos.
+    // Creamos la tabla de fotos con eliminación en cascada.
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS newsPhotos (
-                id CHAR(36) PRIMARY KEY NOT NULL,
-                name VARCHAR(100) NOT NULL,
-                newsId CHAR(36) NOT NULL,
-                FOREIGN KEY (newsId) REFERENCES news(id),
-                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
+    CREATE TABLE IF NOT EXISTS newsPhotos (
+        id CHAR(36) PRIMARY KEY NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        newsId CHAR(36) NOT NULL,
+        FOREIGN KEY (newsId) REFERENCES news(id) ON DELETE CASCADE,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+`);
 
     // Tabla de votos.
     await pool.query(`
