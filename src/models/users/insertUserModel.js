@@ -57,7 +57,7 @@ const insertUserModel = async (
 `;
 
   // Enviamos el email de verificación al usuario.
-  // await sendMailUtil(email, emailSubject, emailBody);
+  await sendMailUtil(email, emailSubject, emailBody);
 
   // Encriptamos la contraseña.
   const hashedPass = await bcrypt.hash(password, 10);
