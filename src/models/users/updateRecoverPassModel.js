@@ -8,6 +8,10 @@ import sendMailUtil from "../../utils/sendMailUtil.js";
 const updateRecoverPassModel = async (email, recoverPassCode) => {
   const pool = await getPool();
 
+  await pool.query(`UPDATE users SET recoverPassCode = NULL WHERE email = ?`, [
+    email,
+  ]);
+
   // Actualizamos el código de recuperación de contraseña del usuario.
   await pool.query(`UPDATE users SET recoverPassCode = ? WHERE email = ?`, [
     recoverPassCode,
