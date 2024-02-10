@@ -20,7 +20,7 @@ const addNewsPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id de la noticia de los path params.
     const { newsId } = req.params;
-
+    console.log("fileeees:", req.files);
     // Validamos el body con Joi.
     await validateSchemaUtil(addNewsPhotoSchema, req.files || {});
 
